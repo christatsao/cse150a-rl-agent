@@ -18,3 +18,28 @@ Sensors: User input / list of movies watched
 ## Methodology:
 We are using a Naïve Bayes model. We will use maximum likelihood to calculate CPT values, since we are using a naive bayes model. We will assume that movies with no genres won’t be chosen and will never be recommended. We will also assume that there will be an optimal recommendation. To evaluate our model, we will split our data and give the model some of the movies that each user has watched and rated to predict what movie they should watch next, and if the output is a movie that the user has watched that we didn’t give the model, we mark a pass, and if not, we mark a fail, and judge based on the percentage of passes.
 
+### CSE150A Project Milestone 3
+Dataset: https://grouplens.org/datasets/movielens/100k/
+
+## PEAS/Agent Analysis (5pts):
+Performance measure: Accuracy depending on user
+Environment: Terminal or code editor
+Actuators: Screen/text output
+Sensors: User reviews and input data
+
+Our model should find the best movie recommendations based on the movies recently watched by the user. Uncertainty modeling is important because recommending movies isn’t objective and is subjective to what the user values. In this context, non-probabilistic approaches don’t take into account how users often choose movies with little to no relation to movies previously watched.
+
+## Agent Setup, Data Preprocessing, Training setup (10pts)
+## Train your model! (5pts)
+## Conclusion/Results (15pts)
+We tested our model with our own testbenches, where we input movies that had similarities and judged the output on whether they all had the same similarities. 
+One example was inputting three movies that all had the animation genre, but with different ratings. Since the ratings are weighted the same as the genre, and the comparison algorithm isn’t implemented correctly, our output differed from what we expected.
+![bad_test_input](./source/bad_test_input.png)
+![bad_test](./source/bad_test.png)
+But for more easy tasks, such as movies with the same rating and the same genre, our output was as expected.
+![good_test_input](./source/good_test_input.png)
+![good_test](./source/good_test.png)
+## Points of Improvement
+- Weigh the ratings heavier
+- Change rating comparison to check if the rating of the movie is greater than or equal to 4, or if it is within 1 star from the user's rating
+- Incorporate year the movie was released and add movies within 10 years of the release date of the compared movie
