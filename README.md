@@ -30,15 +30,14 @@ Sensors: User reviews and input data
 Our model should find the best movie recommendations based on the movies recently watched by the user. Uncertainty modeling is important because recommending movies isn’t objective and is subjective to what the user values. In this context, non-probabilistic approaches don’t take into account how users often choose movies with little to no relation to movies previously watched.
 
 ## Agent Setup, Data Preprocessing, Training setup (10pts)
-The only import we used was Pandas, which is python's standard data manipulation library.
+The only import we used was Pandas, which is python's standard data manipulation library.  
+The dataset consists of one CSV file for user ratings by movie ID and another that contains titles, release dates, and boolean values for genres in the dataset. Using these CSV files we made a dataframe consisting of average ratings by movies and boolean values for genre. In all, our model contains variables for each genre (True or False), ratings (1-5), and whether a movie has been watched by the user (True or False). Under the the Naive Bayes model, each variable is dependent on whether a particular movie has been watched by the user. For our model, we are trying to calculate the probability a movie has been watched given the individual features for the movie. The reason we used a Naive Bayes model is because it is a classification model that is highly scalable for more data, which allows us to easily improve on our baseline model in the next steps of our implementation.  
+To calculate the CPTs:  
+P(watched | features) ∝ P(features | watched) * P(watched)  
+where P(features | watched) = ∏ P(feature | watched)  
+and P(feature | watched) = count(feature and watched) / count(watched)  
 
-The dataset consists of one CSV file for user ratings by movie ID and another that contains titles, release dates, and boolean values for genres in the dataset. Using these CSV files we made a dataframe consisting of average ratings by movies and boolean values for genre. In all, our model contains variables for each genre (True or False), ratings (1-5), and whether a movie has been watched by the user (True or False). Under the the Naive Bayes model, each variable is dependent on whether a particular movie has been watched by the user. For our model, we are trying to calculate the probability a movie has been watched given the individual features for the movie. The reason we used a Naive Bayes model is because it is a classification model that is highly scalable for more data, which allows us to easily improve on our baseline model in the next steps of our implementation. 
-To calculate the CPTs:
-P(watched | features) ∝ P(features | watched) * P(watched) 
-where P(features | watched) = ∏ P(feature | watched)
-and P(feature | watched) = count(feature and watched) / count(watched)
-
-A picture of our model is shown below:
+A picture of our model is shown below:  
 ![graph](./source/graph.png)
 
 ## Train your model! (5pts)
