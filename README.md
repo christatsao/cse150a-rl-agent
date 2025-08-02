@@ -119,11 +119,16 @@ naive_bayes(movies_final, user_rating_cleaned)  # Randomly select 20% of the Dat
 ```
 
 ### Conclusion/Results (15pts)
+To estimate our performance, we got the precision, recall, and accuracy scores of 100 random users using the scikit-learn library. We graphed the results in a histogram, and also calculated the averages, as shown below. 
+
 ![alt text](precision.png)
 ![alt text](recall.png)
 ![alt text](accuracy.png)
-
+```
 Means from above training:
 Precision: 0.6428
 Recall: 0.6507
 Accuracy: 0.6109
+```
+Guessing randomly would have approximately a 50% precision, recall, and accuracy score, so having scores of about 65% is very good.
+Possible improvement: instead of making ratings binary, use the actual rating value in our calculations.
