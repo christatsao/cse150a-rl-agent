@@ -47,5 +47,5 @@ $$
 4. Prediction rule:
 
 $$
-\hat{y} = \arg\max_{y \in \{0,1\}} P(y \mid X)
+\hat{y} = \arg\max_{k \in \{1, \ldots, K\}} p(C_k) \prod_{i=1}^{n} p(x_i \mid C_k)
 $$
