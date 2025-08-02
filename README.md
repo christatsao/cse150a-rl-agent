@@ -130,5 +130,32 @@ Precision: 0.6428
 Recall: 0.6507
 Accuracy: 0.6109
 ```
+
+####  **Precision**  
+> *Out of the movies our model predicted the user would like, how many did they actually like?*
+
+**Interpretation:**  
+A high precision means we make fewer false recommendations. Our score of **0.6428** means that about **64%** of the time, when the model predicts a user will like a movie, they actually do.
+
+---
+
+####  **Recall**  
+> *Out of all the movies the user actually liked, how many did our model successfully recommend?*
+
+
+**Interpretation:**  
+A high recall means we recommend more movies successfully. Our score of **0.6507** means that we successfully recommended about **65%** of the movies users liked.
+
+---
+
+####  **Accuracy**  
+> *Out of all movies, how many times did the model predict correctly whether the user would like or dislike them?*
+
+
+**Interpretation:**  
+Our model was overall correct about **61%** of the time when predicting whether a user would like or dislike a movie.
+
 Guessing randomly would have approximately a 50% precision, recall, and accuracy score, so having scores of about 65% is very good.
-Possible improvement: instead of making ratings binary, use the actual rating value in our calculations.
+
+### Possible improvement:
+Instead of making ratings binary, use the actual rating value in our calculations.
