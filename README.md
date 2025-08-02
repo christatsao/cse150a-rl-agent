@@ -122,3 +122,8 @@ naive_bayes(movies_final, user_rating_cleaned)  # Randomly select 20% of the Dat
 ![alt text](precision.png)
 ![alt text](recall.png)
 ![alt text](accuracy.png)
+
+Means from above training:
+Precision: 0.6428
+Recall: 0.6507
+Accuracy: 0.6109
