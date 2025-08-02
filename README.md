@@ -38,10 +38,45 @@ rating (1 or 0; liked or disliked)
 - genres (binary vector for each movie)
   - 19 binary columns (e.g. Action, Comedy, Drama). Each column is 1 if the movie belongs to that genre. These are the main features for the Naive Bayes classifier.
 
-  We predict the user preferences using naïve bayes classification. The Naïve Bayes model assumes that each feature is conditionally independent given y (liked/disliked). We picked naïve bayes because our data is categorical, and the independence assumption is reasonable for genres. We calculate the CPTS with bayes formula: p(y|X) where X is the feature vector of the genres of a movie with this equation:
+  We predict the user preferences using naïve bayes classification. The Naïve Bayes model assumes that each feature is conditionally independent given y (liked/disliked). We picked naïve bayes because our data is categorical, and the independence assumption is reasonable for genres. We calculate the CPTS with bayes formula, calculating p(y|X) where X is the feature vector of the genres of a movie, then taking the highest value between p(y=1 | X) and p(y=0 | X) to classify a movie as liked or disliked. Below are the equations.
+
+
+1. Prior probability of liked \(y\):
+
+$$
+P(y) = \frac{\text{Number of movies liked } y}{\text{Total number of movies rated}}
+$$
+
+2. Conditional probability of features \(X\) given liked \(y\) (assuming feature independence):
+
+$$
+P(X \mid y) = \prod_{i=1}^n P(x_i \mid y)
+$$
+
+where
+
+$$
+P(x_i \mid y) = \frac{1 + \text{count of movies where } x_i \text{ is present and liked } y}{1 + \text{total count of movies liked } y}
+$$
+
+*(Laplace smoothing is applied to avoid zero probabilities)*
+
+3. Posterior probability of liked \(y\) given features \(X\):
+
+$$
+P(y \mid X) \propto P(y) \times \prod_{i=1}^n P(x_i \mid y)
+$$
+
+4. Prediction rule:
+
+$$
+\hat{y} = \arg\max_{k \in \{1, \ldots, K\}} p(C_k) \prod_{i=1}^{n} p(x_i \mid C_k)
+$$
+
 
 ## Train your model! (5pts)
-Below is a snippet of the main naive bayes logic. You can also find it in the notebook milestone4.ipynb.
+Below is a snippet of the main naive bayes logic. You can also find it in the notebook: [View milestone4.ipynb](./milestone4.ipynb)
+
 
 ```
 movies_final = movies.drop(['title', 'release_date', 'video_release_date', 'IMDb_URL'], axis = 1).set_index('movieId')
