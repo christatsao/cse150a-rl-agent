@@ -18,6 +18,8 @@ Sensors: User input / list of movies watched
 ## Methodology:
 We are using a Naïve Bayes model. We will use maximum likelihood to calculate CPT values, since we are using a naive bayes model. We will assume that movies with no genres won’t be chosen and will never be recommended. We will also assume that there will be an optimal recommendation. To evaluate our model, we will do an 80/20 train/test split and evaluate performance metrics.
 
+![alt text](naive_bayes_diagram.png)
+
 ## Agent Setup, Data Preprocessing, Training setup (15pts)
 In the dataset, we are utilizing two main files: u.item and u.data.
 - u.item: pipe-separated; first 5 cols + 19 genre flags
@@ -117,3 +119,6 @@ naive_bayes(movies_final, user_rating_cleaned)  # Randomly select 20% of the Dat
 ```
 
 ### Conclusion/Results (15pts)
+![alt text](precision.png)
+![alt text](recall.png)
+![alt text](accuracy.png)
