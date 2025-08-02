@@ -17,3 +17,35 @@ Sensors: User input / list of movies watched
 
 ## Methodology:
 We are using a Naïve Bayes model. We will use maximum likelihood to calculate CPT values, since we are using a naive bayes model. We will assume that movies with no genres won’t be chosen and will never be recommended. We will also assume that there will be an optimal recommendation. To evaluate our model, we will sample 80% of a user's ratings and movies watched, and 
+
+1. Prior probability of liked \(y\):
+
+$$
+P(y) = \frac{\text{Number of movies liked } y}{\text{Total number of movies rated}}
+$$
+
+2. Conditional probability of features \(X\) given liked \(y\) (assuming feature independence):
+
+$$
+P(X \mid y) = \prod_{i=1}^n P(x_i \mid y)
+$$
+
+where
+
+$$
+P(x_i \mid y) = \frac{1 + \text{count of movies where } x_i \text{ is present and liked } y}{1 + \text{total count of movies liked } y}
+$$
+
+*(Laplace smoothing is applied to avoid zero probabilities)*
+
+3. Posterior probability of liked \(y\) given features \(X\):
+
+$$
+P(y \mid X) \propto P(y) \times \prod_{i=1}^n P(x_i \mid y)
+$$
+
+4. Prediction rule:
+
+$$
+\hat{y} = \arg\max_{y \in \{0,1\}} P(y \mid X)
+$$
